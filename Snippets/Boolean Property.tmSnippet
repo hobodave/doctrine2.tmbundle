@@ -6,7 +6,7 @@
 	<string>/**
  * @Column(type="boolean"${4:, name="${5:$1}"}${8:, nullable=${9:false}})
  */
-public \$${1:property} = ${2:true};
+protected \$${1:property} = ${2:true};
 $0</string>
 	<key>name</key>
 	<string>Boolean Property</string>

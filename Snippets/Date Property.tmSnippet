@@ -6,7 +6,7 @@
 	<string>/**
  * @Column(type="date"${4:, name="${5:$1}"}${8:, nullable=${9:false}})
  */
-public \$${1:property} = ${2:null};
+protected \$${1:property} = ${2:null};
 $0</string>
 	<key>name</key>
 	<string>Date Property</string>

@@ -6,7 +6,7 @@
 	<string>/**
  * @Column(type="text"${4:, name="${5:$1}"})
  */
-public \$${1:property} = '$2';
+protected \$${1:property} = '$2';
 $0</string>
 	<key>name</key>
 	<string>Text Property</string>

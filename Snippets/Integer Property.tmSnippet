@@ -6,7 +6,7 @@
 	<string>/**
  * @Column(type="${3:integer}"${4:, name="${5:$1}"}${7:, unique=${7:false}}${8:, nullable=${9:false}})
  */
-public \$${1:property} = ${2:null};
+protected \$${1:property} = ${2:null};
 $0</string>
 	<key>name</key>
 	<string>Integer Property</string>

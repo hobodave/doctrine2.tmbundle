@@ -14,7 +14,7 @@ class ${2:Entity}${5: extends ${6:SomeBaseEntity}}
      * @Column(type="integer")
      * @GeneratedValue
      */
-    public \$id = null;
+    protected \$id = null;
 }
     $0
 }</string>
