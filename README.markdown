@@ -1,8 +1,5 @@
-README
-======
-
 Installation
-------------
+============
 
     mkdir -p ~/Library/Application\ Support/TextMate/Bundles
     cd !$
