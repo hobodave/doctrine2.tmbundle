@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>/**
+ * @Id
+ * @Column(type="integer", name="$1")
+ * @GeneratedValue
+ */
+public ${2:\$id} = null;
+$0</string>
+	<key>name</key>
+	<string>Primary Key</string>
+	<key>scope</key>
+	<string>source.php</string>
+	<key>tabTrigger</key>
+	<string>dpk</string>
+	<key>uuid</key>
+	<string>2117AA74-378E-451A-9F73-B219CACC5C68</string>
+</dict>
+</plist>

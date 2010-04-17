@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>/**
+ * @Column(type="decimal"${4:, name="${5:$1}"}${8:, nullable=${9:false}}${10:, scale=${11:0}}${12:, precision=${13:0}})
+ */
+public \$${1:property} = ${2:null};
+$0</string>
+	<key>name</key>
+	<string>Decimal Property</string>
+	<key>scope</key>
+	<string>source.php</string>
+	<key>tabTrigger</key>
+	<string>dp</string>
+	<key>uuid</key>
+	<string>82E8170B-9E0A-443F-AF2C-C72277EA9F30</string>
+</dict>
+</plist>

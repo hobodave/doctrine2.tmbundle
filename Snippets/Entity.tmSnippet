@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>/**
+ * @Entity
+${3: * @Table(name="${4:$2}")
+} */
+class ${2:Entity}${5: extends ${6:SomeBaseEntity}}
+{
+    ${8:/**
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue
+     */
+    public \$id = null;
+}
+    $0
+}</string>
+	<key>name</key>
+	<string>Entity</string>
+	<key>scope</key>
+	<string>source.php</string>
+	<key>tabTrigger</key>
+	<string>de</string>
+	<key>uuid</key>
+	<string>E58A9004-876F-45DF-BD47-DB67E33B00F4</string>
+</dict>
+</plist>

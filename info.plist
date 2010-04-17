@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Doctrine 2.0</string>
+	<key>ordering</key>
+	<array>
+		<string>E58A9004-876F-45DF-BD47-DB67E33B00F4</string>
+		<string>2117AA74-378E-451A-9F73-B219CACC5C68</string>
+		<string>EF5F6D0A-9C2C-4177-9778-7945B599C676</string>
+		<string>675F40BA-5B70-4659-B74A-BB26FE01B929</string>
+		<string>7E81227A-7EB5-4365-B76E-B0F295334279</string>
+		<string>82E8170B-9E0A-443F-AF2C-C72277EA9F30</string>
+		<string>4F98F99D-04EC-4790-8D4C-CB402D92EC01</string>
+		<string>AF4735D9-6826-40AA-BD55-5A0007681E7E</string>
+		<string>C2B9D9EB-7D53-4CF4-998B-A285B8A27B4E</string>
+		<string>CF3FDF82-CA7D-44C1-805E-58BE53183954</string>
+	</array>
+	<key>uuid</key>
+	<string>1E951D0B-F88B-4860-ADC0-F5DC24503AC2</string>
+</dict>
+</plist>
