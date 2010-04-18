@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/ruby
+txt = STDIN.read
+vars = txt.scan(/^\W*(private|public|protected){0,1}\W*\$(\w*)\W*/)
+
+ascript = &lt;&lt;-EOF
+tell app "TextMate" 
+  activate
+end tell
+EOF
+
+displayList = []
+varList = []
+vars.each_with_index do |x,i|
+  scope = x[0]
+  name = x[1]
+  urStr = ""
+
+  if ( scope != nil )
+    urStr += "(" + scope.capitalize() + ") "
+  end
+
+  urStr += "$" + name
+
+  displayList.push( urStr )
+  varList.push( { "name" =&gt; name } )
+end
+
+varList.each_with_index do |x,i|
+  item = x
+  getter = &lt;&lt;-EOF
+public function get%s()
+{
+    return \\\$this-&gt;%s;
+}
+  EOF
+  getter = getter % [ item[ "name" ].capitalize(), item[ "name" ] ]
+
+  setter = &lt;&lt;-EOF
+public function set%s(\\\$val)
+{
+    \\\$this-&gt;%s = \\\$val;
+    return \\\$this;
+}
+  EOF
+  setter = setter % [ item[ "name" ].capitalize(), item[ "name" ] ]
+
+
+  snippet = getter + "\n" + setter + "\n"
+  print snippet
+end</string>
+	<key>fallbackInput</key>
+	<string>document</string>
+	<key>input</key>
+	<string>document</string>
+	<key>name</key>
+	<string>Generate Accessors</string>
+	<key>output</key>
+	<string>insertAsSnippet</string>
+	<key>scope</key>
+	<string>source.php</string>
+	<key>tabTrigger</key>
+	<string>getset</string>
+	<key>uuid</key>
+	<string>94297D7C-B15B-49AA-9C04-AFFA3B32860E</string>
+</dict>
+</plist>

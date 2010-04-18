@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/ruby
+txt = STDIN.read
+vars = txt.scan(/^\W*(private|public|protected){0,1}\W*\$(\w*)\W*/)
+
+ascript = &lt;&lt;-EOF
+tell app "TextMate" 
+  activate
+  choose from list { %s } with title "Selecting variables" with prompt "Which variable to use?" 
+end tell
+EOF
+
+displayList = []
+varList = []
+vars.each_with_index do |x,i|
+  scope = x[0]
+  name = x[1]
+  urStr = ""
+  if ( scope != nil )
+    urStr += "(" + scope.capitalize() + ") "
+  end
+  urStr += "$" + name
+  displayList.push( urStr )
+  varList.push( { "name" =&gt; name } )
+end
+
+
+list = '"' + displayList.join( '", "' ) + '"'
+ascript = ascript % list
+params = "&lt;&lt; 'AS'\n #{ascript}\nAS"
+
+#cmd = open("|arch -i386 osascript" + params)
+cmd = open("|osascript" + params)
+result = cmd.gets.chomp()
+cmd.close
+
+if ( result == "false" )
+  exit
+end
+
+index = displayList.index( result )
+item = varList[ index ]
+
+getter = &lt;&lt;-EOF
+public function get%s()
+{
+    return \\\$this-&gt;%s;
+}
+  EOF
+getter = getter % [ item[ "name" ].capitalize(), item[ "name" ] ]
+
+setter = &lt;&lt;-EOF
+public function set%s(\\\$val)
+{
+    \\\$this-&gt;%s = \\\$val;
+    return \\\$this;
+}
+EOF
+setter = setter % [ item[ "name" ].capitalize(), item[ "name" ] ]
+
+
+snippet = getter + "\n" + setter + "\n"
+print snippet</string>
+	<key>input</key>
+	<string>document</string>
+	<key>name</key>
+	<string>Generate Accessor</string>
+	<key>output</key>
+	<string>insertAsSnippet</string>
+	<key>scope</key>
+	<string>source.php</string>
+	<key>tabTrigger</key>
+	<string>getset1</string>
+	<key>uuid</key>
+	<string>D7C932F6-E881-443A-8B63-3FD3777266A4</string>
+</dict>
+</plist>
