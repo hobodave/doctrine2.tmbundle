@@ -7,7 +7,7 @@
 	<key>command</key>
 	<string>#!/usr/bin/ruby
 txt = STDIN.read
-vars = txt.scan(/^\W*(private|public|protected){0,1}\W*\$(\w*)\W*/)
+vars = txt.scan(/^\s*(private|public|protected){0,1}\s*\$(\w*)/)
 
 ascript = &lt;&lt;-EOF
 tell app "TextMate" 
