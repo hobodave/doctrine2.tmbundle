@@ -7,7 +7,7 @@
 	<key>command</key>
 	<string>#!/usr/bin/ruby
 txt = STDIN.read
-vars = txt.scan(/^\s*(private|public|protected){0,1}\s*\$(\w*)/)
+vars = txt.scan(/^\s*(private|public|protected)\s*\$(\w*)/)
 
 ascript = &lt;&lt;-EOF
 tell app "TextMate" 
@@ -48,21 +48,29 @@ index = displayList.index( result )
 item = varList[ index ]
 
 getter = &lt;&lt;-EOF
+/**
+ * @return
+ */
 public function get%s()
 {
     return \\\$this-&gt;%s;
 }
   EOF
-getter = getter % [ item[ "name" ].capitalize(), item[ "name" ] ]
+getter = getter % [ item[ "name" ].sub(/^(\w)/) {|s| s.capitalize}, item[ "name" ] ]
 
 setter = &lt;&lt;-EOF
+/**
+ *
+ * @param 
+ * @return
+ */
 public function set%s(\\\$val)
 {
     \\\$this-&gt;%s = \\\$val;
     return \\\$this;
 }
 EOF
-setter = setter % [ item[ "name" ].capitalize(), item[ "name" ] ]
+setter = setter % [ item["name"].sub(/^(\w)/) {|s| s.capitalize}, item[ "name" ] ]
 
 
 snippet = getter + "\n" + setter + "\n"
