@@ -6,8 +6,16 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>#!/usr/bin/ruby
+class String
+  def ucfirst
+    self[0,1].upcase + self[1..-1]
+  end
+end
+
 txt = STDIN.read
 vars = txt.scan(/^\s*(private|public|protected)\s*\$(\w*)/)
+
+classname = txt.scan(/^class\s*(\w+)/).first
 
 ascript = &lt;&lt;-EOF
 tell app "TextMate" 
@@ -36,6 +44,7 @@ varList.each_with_index do |x,i|
   item = x
   getter = &lt;&lt;-EOF
 /**
+ * get%s
  *
  * @return
  */
@@ -43,22 +52,37 @@ public function get%s()
 {
     return \\\$this-&gt;%s;
 }
-  EOF
-  getter = getter % [ item[ "name" ].sub(/^(\w)/) {|s| s.capitalize}, item[ "name" ] ]
+EOF
+  item_name = item["name"]
+  getter = getter % [
+    item_name.ucfirst,
+    item_name.ucfirst,
+    item_name
+  ]
 
   setter = &lt;&lt;-EOF
 /**
+ * set%s
  *
- * @param 
- * @return
+ * @param mixed \\\$%s
+ * @return %s
  */
-public function set%s(\\\$val)
+public function set%s(\\\$%s)
 {
-    \\\$this-&gt;%s = \\\$val;
+    \\\$this-&gt;%s = \\\$%s;
     return \\\$this;
 }
-  EOF
-  setter = setter % [ item[ "name" ].sub(/^(\w)/) {|s| s.capitalize}, item[ "name" ] ]
+EOF
+  item_name = item["name"]
+  setter = setter % [
+    item_name.ucfirst,
+    item_name,
+    classname,
+    item_name.ucfirst,
+    item_name,
+    item_name,
+    item_name
+  ]
 
 
   snippet = getter + "\n" + setter + "\n"
